@@ -7,3 +7,5 @@ plot_scaling.py
 script.py
 search.py
 sheet.py
+other.py
+access.py

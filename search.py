@@ -5,36 +5,23 @@ from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSe
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, accuracy_score
 
-# -------------------------------
-# Load Dataset
-# -------------------------------
 iris = datasets.load_iris()
 
 X = iris.data
 y = iris.target
 
-# Train-Test Split
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
 
-# -------------------------------
-# Model
-# -------------------------------
 model = SVC()
 
-# -------------------------------
-# Hyperparameter Grid
-# -------------------------------
 hyperparam_grid = {
     'C': [0.1, 1, 10, 100],
     'kernel': ['linear', 'rbf', 'poly'],
     'gamma': ['scale', 'auto']
 }
 
-# -------------------------------
-# Grid Search
-# -------------------------------
 grid_search = GridSearchCV(
     estimator=model,
     param_grid=hyperparam_grid,
@@ -52,7 +39,6 @@ best_score = grid_search.best_score_
 print("Best Model (GridSearch):", best_hyperparameters)
 print("Best Score (GridSearch):", best_score)
 
-# Evaluate
 best_model = grid_search.best_estimator_
 y_pred = best_model.predict(X_test)
 
